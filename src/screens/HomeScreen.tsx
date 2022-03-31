@@ -1,31 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import {
-  PermissionsAndroid,
-  Platform,
-  StatusBar,
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Provider, useDispatch, useSelector } from 'react-redux';
-import { ToastProvider } from 'react-native-toast-notifications';
-
-import Toast from '../components/Toast';
-import { spacing, typography } from '../styles';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReceiveMoney, SendMoney } from '../assets/svg';
 import BalanceCard from '../components/BalanceCard';
 import Button from '../components/Button';
-import { PRIMARY, WHITE } from '../styles/colors';
-import BorderedWrapper from '../components/BorderedWrapper';
+import { colors } from '../styles/';
 import TransactionSection from '../components/TransactionSection';
 import SendMoneyModal from '../components/SendMoneyModal';
 import TransactionsModal from '../components/TransactionsModal';
-import { account, getBanks } from '../redux/slices/bankSlice';
+import { getBanks } from '../redux/slices/bankSlice';
 import { RootState } from '../redux/store';
 import { unwrapResult } from '@reduxjs/toolkit';
-import { BASE_URL_2 } from '@env';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function HomeScreen({ navigation }: any) {
   const [sendMoneyModal, setSendMoneyModal] = useState(false);
@@ -37,40 +24,29 @@ export default function HomeScreen({ navigation }: any) {
   const { transactions } = useSelector((state: RootState) => state.banks);
 
   useEffect(() => {
-    dispatch(getBanks())
-      .then(unwrapResult)
-      .then((res: any) => setBanks(res));
+    try {
+      dispatch(getBanks())
+        .then(unwrapResult)
+        .then((res: any) => setBanks(res));
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-      <View
-        style={{
-          backgroundColor: '#F4F4F4',
-          width: '100%',
-          paddingVertical: 24,
-          paddingHorizontal: 32,
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'space-around',
-        }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.WHITE }}>
+      <View style={styles.mainView}>
         <View style={{ marginBottom: 50 }}>
           <BalanceCard />
         </View>
 
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-around',
-            width: '100%',
-          }}>
+        <View style={styles.buttonView}>
           <Button
             title="Send"
             buttonIcon={<SendMoney />}
             containerStyle={{ width: '42%' }}
             titleStyle={{
-              color: PRIMARY,
+              color: colors.PRIMARY,
             }}
             buttonStyle={{
               height: 60,
@@ -82,13 +58,13 @@ export default function HomeScreen({ navigation }: any) {
             buttonIcon={<ReceiveMoney />}
             containerStyle={{ width: '42%' }}
             titleStyle={{
-              color: PRIMARY,
+              color: colors.PRIMARY,
             }}
             buttonStyle={{
               height: 60,
             }}
             onPress={() => {
-              navigation.navigate('DumpScreen');
+              AsyncStorage.clear();
             }}
           />
         </View>
@@ -101,6 +77,7 @@ export default function HomeScreen({ navigation }: any) {
         />
       </View>
       <SendMoneyModal
+        banksReady={banks.length > 0}
         banks={banks}
         isVisible={sendMoneyModal}
         closeModal={() => setSendMoneyModal(false)}
@@ -109,9 +86,26 @@ export default function HomeScreen({ navigation }: any) {
         isVisible={transactionsModal}
         closeModal={() => setTransactionsModal(false)}
         navigation={navigation}
+        transactions={transactions}
       />
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  mainView: {
+    backgroundColor: colors.GRAY5,
+    width: '100%',
+    paddingVertical: 24,
+    paddingHorizontal: 32,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  buttonView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    width: '100%',
+  },
+});

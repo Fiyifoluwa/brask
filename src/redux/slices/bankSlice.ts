@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { FLW_KEY, BASE_URL, BASE_URL_2, API } from '@env';
+import { BASE_URL_2, API } from '@env';
 
 interface initialStateType {
   banks: Array<any>;

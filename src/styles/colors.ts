@@ -7,6 +7,7 @@ export const LIGHTBLUE = '#F8FCFF';
 export const BROWN = '#390000';
 
 // GRAYSCALE
+export const GRAY5 = '#F4F4F4';
 export const GRAY10 = '#F7F8FA';
 export const GRAY20 = '#EBECEE';
 export const GRAY30 = '#BCC2CC';
