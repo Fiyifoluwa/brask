@@ -1,82 +1,43 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import {
   TouchableOpacity,
   View,
   Text,
-  TextStyle,
   StyleSheet,
   ViewStyle,
-  ActivityIndicator,
 } from 'react-native';
-import { PRIMARY, SECONDARY, WHITE, BLACK } from '../../styles/colors';
+import { colors } from '../../styles';
+import { typo } from '../../styles/typography';
 
 interface CardProps {
   cardStyle?: ViewStyle;
   navigation: any;
   data?: any;
+  closeModal?: () => void;
 }
 
-const TransactionCard = ({ cardStyle, navigation, data }: CardProps) => {
+const TransactionCard = ({
+  cardStyle,
+  navigation,
+  data,
+  closeModal,
+}: CardProps) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       onPress={() => {
-        navigation.navigate('DetailScreen');
+        navigation.navigate('DetailScreen', { data });
+        closeModal && closeModal();
       }}
       style={[styles.cardStyle, cardStyle]}>
       <View
-        style={{
-          width: 53,
-          height: 53,
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderRadius: 300,
-          backgroundColor: PRIMARY,
-          marginRight: 17,
-        }}>
-        <Text style={{ color: WHITE }}>pic</Text>
-      </View>
-      <View
         style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 1 }}>
-        <Text
-          style={{
-            fontFamily: 'Inter',
-            fontSize: 14,
-            fontWeight: '500',
-            marginBottom: 8,
-          }}>
-          {data.accountName}
-        </Text>
-        <Text
-          style={{
-            fontFamily: 'Inter',
-            fontSize: 12,
-            fontWeight: '400',
-            color: '#999EA1',
-          }}>
-          {data.date}
-        </Text>
+        <Text style={styles.accountNameView}>{data.accountName}</Text>
+        <Text style={styles.date}>{data.date}</Text>
       </View>
       <View style={{ alignItems: 'flex-end', justifyContent: 'center' }}>
-        <Text
-          style={{
-            fontFamily: 'Inter',
-            fontSize: 14,
-            fontWeight: '600',
-            marginBottom: 8,
-            color: PRIMARY,
-          }}>
-          - ₦{data.amount}
-        </Text>
-        <Text
-          style={{
-            fontFamily: 'Inter',
-            fontSize: 12,
-            fontWeight: '500',
-            color: '#999EA1',
-          }}>
-          {data.time}
-        </Text>
+        <Text style={styles.amount}>- ₦{data.amount}</Text>
+        <Text style={styles.time}>{data.time}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -84,10 +45,32 @@ const TransactionCard = ({ cardStyle, navigation, data }: CardProps) => {
 
 const styles = StyleSheet.create({
   cardStyle: {
-    backgroundColor: WHITE,
+    backgroundColor: colors.WHITE,
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: 10,
+    marginBottom: 20,
+  },
+  accountNameView: {
+    ...typo.font16,
+    fontWeight: '500',
+    marginBottom: 8,
+  },
+  date: {
+    ...typo.font14,
+    fontWeight: '400',
+    color: colors.GRAY45,
+  },
+  amount: {
+    ...typo.font16,
+    fontWeight: '600',
+    marginBottom: 8,
+    color: colors.PRIMARY,
+  },
+  time: {
+    ...typo.font14,
+    fontWeight: '500',
+    color: colors.GRAY45,
   },
 });
 

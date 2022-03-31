@@ -1,17 +1,14 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import {
   TouchableOpacity,
   View,
-  Text,
-  TextStyle,
   StyleSheet,
   ViewStyle,
-  ActivityIndicator,
   ScrollView,
 } from 'react-native';
 import Modal from 'react-native-modal';
-import { CaretDown, ClearInput } from '../../assets/svg';
-import { PRIMARY, SECONDARY, WHITE, BLACK } from '../../styles/colors';
+import { ClearInput } from '../../assets/svg';
+import { colors } from '../../styles';
 import TransactionCard from '../TransactionCard';
 
 interface TMProps {
@@ -19,6 +16,7 @@ interface TMProps {
   navigation: any;
   isVisible: boolean;
   closeModal: () => void;
+  transactions: any[];
 }
 
 const TransactionsModal = ({
@@ -26,7 +24,16 @@ const TransactionsModal = ({
   navigation,
   isVisible,
   closeModal,
+  transactions,
 }: TMProps) => {
+  let transactionsData: any[] = [];
+
+  if (transactions) {
+    transactions.forEach((transaction: any) => {
+      transactionsData.unshift(transaction);
+    });
+  }
+
   return (
     <Modal
       isVisible={isVisible}
@@ -46,18 +53,15 @@ const TransactionsModal = ({
           style={[styles.wrapperStyle, wrapperStyle]}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ alignItems: 'center' }}>
-          <TransactionCard navigation={navigation} />
-          <TransactionCard navigation={navigation} />
-          <TransactionCard navigation={navigation} />
-          <TransactionCard navigation={navigation} />
-          <TransactionCard navigation={navigation} />
-          <TransactionCard navigation={navigation} />
-          <TransactionCard navigation={navigation} />
-          <TransactionCard navigation={navigation} />
-          <TransactionCard navigation={navigation} />
-          <TransactionCard navigation={navigation} />
-          <TransactionCard navigation={navigation} />
-          <TransactionCard navigation={navigation} />
+          {transactions &&
+            transactionsData.map(transaction => (
+              <TransactionCard
+                data={transaction}
+                key={transaction.id}
+                navigation={navigation}
+                closeModal={closeModal}
+              />
+            ))}
         </ScrollView>
       </View>
     </Modal>
@@ -66,8 +70,7 @@ const TransactionsModal = ({
 
 const styles = StyleSheet.create({
   wrapperStyle: {
-    backgroundColor: WHITE,
-    // alignItems: 'center',
+    backgroundColor: colors.WHITE,
   },
   headerView: {
     display: 'flex',
@@ -79,7 +82,6 @@ const styles = StyleSheet.create({
   bottomModalView: {
     justifyContent: 'flex-end',
     margin: 0,
-    // flex: 1,
   },
   modal: {
     width: '100%',
@@ -88,9 +90,7 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingBottom: 32,
     flex: 0.9,
-    // paddingVertical: 35,
-    // paddingTop: 35,
-    backgroundColor: WHITE,
+    backgroundColor: colors.WHITE,
   },
 });
 

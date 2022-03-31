@@ -1,15 +1,7 @@
 import React, { ReactNode } from 'react';
-import {
-  TouchableOpacity,
-  View,
-  Text,
-  TextStyle,
-  StyleSheet,
-  ViewStyle,
-  ActivityIndicator,
-} from 'react-native';
-import { PRIMARY, SECONDARY, WHITE, BLACK } from '../../styles/colors';
-
+import { View, Text, TextStyle, StyleSheet, ViewStyle } from 'react-native';
+import { colors } from '../../styles';
+import { typo } from '../../styles/typography';
 interface WrapperProps {
   wrapperStyle?: ViewStyle;
   children: ReactNode;
@@ -26,14 +18,7 @@ const BorderedWrapper = ({
   return (
     <View style={[styles.wrapperStyle, wrapperStyle]}>
       {title ? (
-        <View
-          style={{
-            width: '99.8%',
-            padding: 16,
-            backgroundColor: '#FBFBFB',
-            borderTopEndRadius: 4,
-            borderTopStartRadius: 4,
-          }}>
+        <View style={styles.titleView}>
           <Text style={[styles.titleStyle, titleStyle]}>{title}</Text>
         </View>
       ) : null}
@@ -44,14 +29,21 @@ const BorderedWrapper = ({
 
 const styles = StyleSheet.create({
   wrapperStyle: {
-    backgroundColor: WHITE,
+    backgroundColor: colors.WHITE,
     borderRadius: 4,
-    borderColor: PRIMARY,
+    borderColor: colors.PRIMARY,
     borderWidth: 0.6,
   },
   titleStyle: {
-    fontSize: 14,
+    ...typo.font16,
     color: '#390000',
+  },
+  titleView: {
+    width: '99.8%',
+    padding: 16,
+    backgroundColor: colors.GRAY5,
+    borderTopEndRadius: 4,
+    borderTopStartRadius: 4,
   },
 });
 

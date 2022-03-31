@@ -1,16 +1,8 @@
 import React from 'react';
-import {
-  TextInput,
-  StyleSheet,
-  View,
-  GestureResponderEvent,
-  TextStyle,
-  TouchableOpacity,
-  TextInputProps,
-  Text,
-} from 'react-native';
+import { StyleSheet, View, TextStyle, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { typography } from '../styles/';
+import { colors, typography } from '../styles/';
+import { typo } from '../styles/typography';
 
 interface ToastProps {
   text: string | number | any;
@@ -36,9 +28,8 @@ const Toast: React.FC<ToastProps> = ({
       width: '100%',
     },
     toastTextStyle: {
-      color: '#fff',
-      // fontFamily: Fonts.DMSansMedium,
-      fontSize: typography.FONT_SIZE_14,
+      color: colors.WHITE,
+      ...typo.font14,
     },
   });
 

@@ -9,6 +9,7 @@ import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackButton } from '../assets/svg';
 import { colors } from '../styles';
+import { typo } from '../styles/typography';
 
 const DetailScreen = ({ navigation, route }: any) => {
   const { data } = route.params;
@@ -79,11 +80,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerText: {
+    ...typo.font22,
     marginLeft: 40,
-    fontSize: 20,
     fontWeight: '500',
     color: colors.BROWN,
-    fontFamily: 'Inter',
   },
   detailsView: {
     flexDirection: 'row',
@@ -95,19 +95,19 @@ const styles = StyleSheet.create({
   },
   amountText: {
     marginBottom: 12,
-    fontSize: 22,
+    ...typo.font24,
     fontWeight: '600',
     color: colors.PRIMARY,
   },
-  nameText: { marginBottom: 4, fontSize: 16, fontWeight: '500' },
-  smallGreyText: { fontSize: 12, color: colors.GRAY50 },
+  nameText: { marginBottom: 4, ...typo.font18, fontWeight: '500' },
+  smallGreyText: { ...typo.font14, color: colors.GRAY50 },
   statusView: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingBottom: 32,
   },
-  smallBlackText: { fontSize: 12, color: colors.BLACK, fontFamily: 'Inter' },
+  smallBlackText: { ...typo.font14, color: colors.BLACK, fontFamily: 'Inter' },
   statusItemView: {
     flexDirection: 'row',
     alignItems: 'center',

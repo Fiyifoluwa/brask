@@ -13,6 +13,8 @@ import { getBanks } from '../redux/slices/bankSlice';
 import { RootState } from '../redux/store';
 import { unwrapResult } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useToast } from 'react-native-toast-notifications';
+import { boxShadow } from '../styles/mixins';
 
 export default function HomeScreen({ navigation }: any) {
   const [sendMoneyModal, setSendMoneyModal] = useState(false);
@@ -20,6 +22,7 @@ export default function HomeScreen({ navigation }: any) {
   const [banks, setBanks] = useState([]);
 
   const dispatch = useDispatch();
+  const toast = useToast();
 
   const { transactions } = useSelector((state: RootState) => state.banks);
 
@@ -27,7 +30,11 @@ export default function HomeScreen({ navigation }: any) {
     try {
       dispatch(getBanks())
         .then(unwrapResult)
-        .then((res: any) => setBanks(res));
+        .then((res: any) => {
+          if (res) {
+            setBanks(res);
+          }
+        });
     } catch (error) {
       console.log(error);
     }
@@ -36,7 +43,7 @@ export default function HomeScreen({ navigation }: any) {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.WHITE }}>
       <View style={styles.mainView}>
-        <View style={{ marginBottom: 50 }}>
+        <View style={[{ marginBottom: 50 }, boxShadow(colors)]}>
           <BalanceCard />
         </View>
 
@@ -65,6 +72,7 @@ export default function HomeScreen({ navigation }: any) {
             }}
             onPress={() => {
               AsyncStorage.clear();
+              toast.show('Local storage cleared');
             }}
           />
         </View>

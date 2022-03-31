@@ -8,7 +8,8 @@ import {
   ViewStyle,
   ActivityIndicator,
 } from 'react-native';
-import { PRIMARY, SECONDARY, WHITE, BLACK } from '../../styles/colors';
+import { colors } from '../../styles';
+import { typo } from '../../styles/typography';
 
 interface ButtonProps {
   loading?: boolean;
@@ -43,15 +44,9 @@ const Button = ({
           { opacity: disabled ? 0.6 : 1 },
         ]}>
         {loading ? (
-          <ActivityIndicator size="small" color={PRIMARY} />
+          <ActivityIndicator size="small" color={colors.PRIMARY} />
         ) : (
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: 16,
-            }}>
+          <View style={styles.buttonContent}>
             {buttonIcon ? buttonIcon : null}
             <Text style={[styles.title, titleStyle]}>{title}</Text>
           </View>
@@ -63,28 +58,31 @@ const Button = ({
 
 const styles = StyleSheet.create({
   containerStyle: {
-    // position: 'absolute',
-    // bottom: 30,
     width: '100%',
     justifyContent: 'center',
     alignSelf: 'center',
   },
   title: {
-    color: BLACK,
-    fontSize: 17,
+    color: colors.BLACK,
+    ...typo.font19,
     alignSelf: 'center',
     textAlign: 'center',
-    fontFamily: 'Inter',
     paddingLeft: 15,
     fontWeight: '500',
   },
   buttonStyle: {
     height: 55,
     width: '100%',
-    backgroundColor: WHITE,
+    backgroundColor: colors.WHITE,
     borderRadius: 5,
     justifyContent: 'center',
     alignSelf: 'center',
+  },
+  buttonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
   },
 });
 

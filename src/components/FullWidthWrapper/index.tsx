@@ -1,14 +1,5 @@
 import React, { ReactNode } from 'react';
-import {
-  TouchableOpacity,
-  View,
-  Text,
-  TextStyle,
-  StyleSheet,
-  ViewStyle,
-  ActivityIndicator,
-} from 'react-native';
-import { PRIMARY, SECONDARY, WHITE, BLACK } from '../../styles/colors';
+import { View, StyleSheet } from 'react-native';
 
 interface WrapperProps {
   children?: ReactNode;
