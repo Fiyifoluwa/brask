@@ -12,8 +12,11 @@ export const GRAY10 = '#F7F8FA';
 export const GRAY20 = '#EBECEE';
 export const GRAY30 = '#BCC2CC';
 export const GRAY40 = '#bdbdbd';
+export const GRAY45 = '#999EA1';
 export const GRAY50 = '#73777D';
+export const GRAY55 = '#828282';
 export const GRAY60 = '#474D5A';
+export const GRAY80 = '#333333';
 
 // ACTIONS
 export const SUCCESS = '#3adb76';

@@ -1,5 +1,5 @@
 import HomeScreen from './HomeScreen';
-import DumpScreen from './DumpScreen';
 import DetailScreen from './DetailScreen';
+import AppLoadingScreen from './AppLoadingScreen';
 
-export { HomeScreen, DumpScreen, DetailScreen };
+export { HomeScreen, DetailScreen, AppLoadingScreen };
