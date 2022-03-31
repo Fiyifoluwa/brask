@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { FLW_KEY, BASE_URL, BASE_URL_2, API } from '@env';
-import { useDispatch } from 'react-redux';
 
 interface initialStateType {
   banks: Array<any>;
   account: null;
   status: null;
-  transactions: Array<any>;
+  transactions: any;
 }
 
 const initialState: initialStateType = {
@@ -37,21 +36,6 @@ export const getBanks: any = createAsyncThunk('banks/getBanks', async () => {
 export const account: any = createAsyncThunk(
   'banks/account',
   async (data: any) => {
-    // return axios
-    //   .get(
-    //     `${BASE_URL_2}bank/resolve?account_number=${data.accountNumber}&bank_code=${data.bank}
-    //   `,
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${API}`,
-    //       },
-    //     },
-    //   )
-    //   .then(res => console.log(res))
-    //   .catch(err => {
-    //     console.log('===> account res err', err);
-    //   });
-
     return fetch(
       `${BASE_URL_2}bank/resolve?account_number=${data.accountNumber}&bank_code=${data.bank}`,
       {
@@ -76,7 +60,10 @@ export const bankSlice = createSlice({
   initialState,
   reducers: {
     setTransactions: (state, { payload }) => {
-      state.transactions.push(payload);
+      state.transactions = payload;
+    },
+    addTransaction: (state, { payload }) => {
+      state.transactions = [...state.transactions, payload];
     },
   },
   extraReducers: {
@@ -103,7 +90,7 @@ export const bankSlice = createSlice({
   },
 });
 
-export const { setTransactions } = bankSlice.actions;
+export const { setTransactions, addTransaction } = bankSlice.actions;
 
 export const selectBanks = (state: {
   banks: any[];
