@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerText: {
-    ...typo.font22,
+    ...typo.font20,
     marginLeft: 40,
     fontWeight: '500',
     color: colors.BROWN,
@@ -95,19 +95,24 @@ const styles = StyleSheet.create({
   },
   amountText: {
     marginBottom: 12,
-    ...typo.font24,
+    ...typo.font22,
     fontWeight: '600',
     color: colors.PRIMARY,
   },
-  nameText: { marginBottom: 4, ...typo.font18, fontWeight: '500' },
-  smallGreyText: { ...typo.font14, color: colors.GRAY50 },
+  nameText: {
+    marginBottom: 4,
+    ...typo.font16,
+    fontWeight: '500',
+    color: colors.BLACK,
+  },
+  smallGreyText: { ...typo.font12, color: colors.GRAY50 },
   statusView: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingBottom: 32,
   },
-  smallBlackText: { ...typo.font14, color: colors.BLACK, fontFamily: 'Inter' },
+  smallBlackText: { ...typo.font12, color: colors.BLACK, fontFamily: 'Inter' },
   statusItemView: {
     flexDirection: 'row',
     alignItems: 'center',

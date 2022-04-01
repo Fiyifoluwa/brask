@@ -104,15 +104,15 @@ const styles = StyleSheet.create({
     borderColor: colors.RED,
   },
   textInput: {
-    ...typo.font17,
+    ...typo.font15,
     color: colors.BLACK,
     width: '100%',
     height: '100%',
     borderRadius: 8,
-    paddingVertical: 18,
+    paddingVertical: 12,
   },
   errorText: {
-    ...typo.font11,
+    ...typo.font9,
     color: colors.RED,
     marginTop: 6,
     fontWeight: '500',

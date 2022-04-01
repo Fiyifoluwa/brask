@@ -161,6 +161,7 @@ const SendMoneyModal: FC<SendMoneyProps> = ({
       isVisible={isVisible}
       coverScreen={true}
       hasBackdrop={true}
+      avoidKeyboard
       onBackdropPress={() => {
         closeModal();
         setAccountName('');
@@ -340,13 +341,13 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontWeight: '500',
-    ...typo.font20,
+    ...typo.font18,
     color: colors.BROWN,
   },
   dropdownCont: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-    paddingVertical: 18,
+    paddingVertical: 16,
     paddingHorizontal: 16,
     marginTop: 20,
     backgroundColor: colors.WHITE,
@@ -356,12 +357,12 @@ const styles = StyleSheet.create({
   },
   dropdownInputText: {
     marginTop: -12,
-    ...typo.font17,
+    ...typo.font15,
     color: colors.BLACK,
     width: '100%',
   },
   wrapperStyle: { width: '100%', marginTop: 33 },
-  titleStyle: { color: colors.BROWN, ...typo.font14 },
+  titleStyle: { color: colors.BROWN, ...typo.font13 },
   accountNameView: {
     alignSelf: 'center',
     backgroundColor: colors.LIGHTBLUE,
@@ -372,9 +373,9 @@ const styles = StyleSheet.create({
     minHeight: 32,
   },
   accountName: { color: colors.BROWN, letterSpacing: 0.1 },
-  fieldTitle: { color: colors.BROWN, ...typo.font14 },
+  fieldTitle: { color: colors.BROWN, ...typo.font13 },
   amountRightIcon: {
     color: colors.GRAY50,
-    ...typo.font17,
+    ...typo.font13,
   },
 });

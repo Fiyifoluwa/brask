@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.BLACK,
-    ...typo.font19,
+    ...typo.font17,
     alignSelf: 'center',
     textAlign: 'center',
     paddingLeft: 15,

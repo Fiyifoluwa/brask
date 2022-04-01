@@ -32,7 +32,7 @@ const TransactionCard = ({
       style={[styles.cardStyle, cardStyle]}>
       <View
         style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 1 }}>
-        <Text style={styles.accountNameView}>{data.accountName}</Text>
+        <Text style={styles.accountName}>{data.accountName}</Text>
         <Text style={styles.date}>{data.date}</Text>
       </View>
       <View style={{ alignItems: 'flex-end', justifyContent: 'center' }}>
@@ -51,24 +51,25 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginBottom: 20,
   },
-  accountNameView: {
+  accountName: {
     ...typo.font16,
     fontWeight: '500',
     marginBottom: 8,
+    color: colors.BLACK,
   },
   date: {
-    ...typo.font14,
+    ...typo.font12,
     fontWeight: '400',
     color: colors.GRAY45,
   },
   amount: {
-    ...typo.font16,
+    ...typo.font14,
     fontWeight: '600',
     marginBottom: 8,
     color: colors.PRIMARY,
   },
   time: {
-    ...typo.font14,
+    ...typo.font12,
     fontWeight: '500',
     color: colors.GRAY45,
   },

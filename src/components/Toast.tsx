@@ -29,7 +29,7 @@ const Toast: React.FC<ToastProps> = ({
     },
     toastTextStyle: {
       color: colors.WHITE,
-      ...typo.font14,
+      ...typo.font12,
     },
   });
 

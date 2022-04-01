@@ -28,7 +28,6 @@ export default function BalanceCard() {
 const styles = StyleSheet.create({
   balanceCard: {
     width: 299,
-    height: 125,
     backgroundColor: colors.WHITE,
     borderRadius: 8,
     marginVertical: 15,
@@ -41,9 +40,9 @@ const styles = StyleSheet.create({
   accountName: {
     color: colors.GRAY55,
     marginBottom: 12,
-    ...typo.font14,
+    ...typo.font12,
   },
-  balance: { color: colors.GRAY80, ...typo.font24 },
-  cardNo: { ...typo.font14, color: colors.GRAY80 },
+  balance: { color: colors.GRAY80, ...typo.font22 },
+  cardNo: { ...typo.font12, color: colors.GRAY80 },
   hideBalance: { position: 'absolute', top: 16, right: 16 },
 });

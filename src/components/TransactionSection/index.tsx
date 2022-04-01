@@ -81,13 +81,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   transactionSectionTitle: {
-    ...typo.font18,
+    ...typo.font16,
     fontWeight: '500',
     color: '#9C9FA0',
   },
   viewMore: {
     marginRight: 4,
-    ...typo.font14,
+    ...typo.font13,
     fontWeight: '500',
     color: colors.PRIMARY,
   },

@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.6,
   },
   titleStyle: {
-    ...typo.font16,
+    ...typo.font14,
     color: '#390000',
   },
   titleView: {

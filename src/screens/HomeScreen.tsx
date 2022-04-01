@@ -72,7 +72,7 @@ export default function HomeScreen({ navigation }: any) {
             }}
             onPress={() => {
               AsyncStorage.clear();
-              toast.show('Local storage cleared');
+              toast.show('Local storage cleared.');
             }}
           />
         </View>
